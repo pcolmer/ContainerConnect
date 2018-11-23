@@ -23,8 +23,8 @@ if [ -z "$DEST_DIR" ] && [ ! -d "$(pwd)/dest_dir" ]; then
         mkdir "$(pwd)/dest_dir"
 fi
 
-echo docker run --rm -it -e JEKYLL_ACTION -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
+echo docker run --rm -it -p 4000:4000 -e JEKYLL_ACTION -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
         $GEM_VAR $GEM_MOUNT -v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
 
-docker run --rm -it -e JEKYLL_ACTION -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
+docker run --rm -it -p 4000:4000 -e JEKYLL_ACTION -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
         $GEM_VAR $GEM_MOUNT -v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
