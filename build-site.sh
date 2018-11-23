@@ -10,8 +10,8 @@ if [ ! -z "$GEM_HOME" ]; then
         if [ "$gem_parent_dir" != "$(pwd)" ]; then
                 # Build a volume mount command
                 # and change the value for GEM_HOME to point to it
-                GEM_VAR="-eGEM_HOME=/gems "
-                GEM_MOUNT="-v$GEM_HOME:/gems "
+                GEM_VAR="-eGEM_HOME=/gems"
+                GEM_MOUNT="-v$GEM_HOME:/gems"
         fi
 else
         GEM_VAR=""
@@ -23,7 +23,7 @@ if [ -z "$DEST_DIR" ] && [ ! -d "$(pwd)/dest_dir" ]; then
 fi
 
 echo docker run --rm -it -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
-        "$GEM_VAR""$GEM_MOUNT"-v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
+        $GEM_VAR $GEM_MOUNT -v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
 
 docker run --rm -it -e JEKYLL_CONFIG -e JEKYLL_ENV -e SOURCE_DIR -e DEST_DIR \
-        "$GEM_VAR""$GEM_MOUNT"-v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
+        $GEM_VAR $GEM_MOUNT -v "$(pwd)":/srv linaroits/jekyllsitebuild:latest build-site.sh
